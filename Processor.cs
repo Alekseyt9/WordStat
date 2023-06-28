@@ -4,26 +4,26 @@ namespace WordStat
 {
     internal class Processor
     {
-        private readonly Parser _parser;
         private readonly Dictionary<string, int> _map = new();
+        //private readonly SortedDictionary<string, int> _map = new();
 
-        public Processor(Parser parser)
-        {
-            _parser = parser;
-        }
-
-        public void Do(string resFile, int resCount)
+        public void Perform(Parser parser)
         {
             string word;
 
-            while (_parser.Next(out word))
+            while (parser.Next(out word))
             {
                 if (!_map.ContainsKey(word))
+                {
                     _map.Add(word, 0);
+                }
 
                 _map[word]++;
             }
+        }
 
+        public void WrireResult(string resFile, int resCount)
+        {
             var list = new List<ExprItem>();
             foreach (var pair in _map)
             {
@@ -42,7 +42,6 @@ namespace WordStat
             {
                 writer.WriteLine($"{list[i].Count}: {list[i].Text}");
             }
-
         }
 
     }
