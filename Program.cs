@@ -9,7 +9,7 @@ namespace WordStat
         {
             var processor = new Processor();
 
-            var path = @"d:\eng_corp\enwiki-latest-pages-articles.xml\";
+            var path = @"d:\eng_corp\subtitles\";
             var files = Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories).ToList();
             //var files = new List<string>() { @"d:\eng_corp\reddit.txt" };
 
@@ -47,7 +47,14 @@ namespace WordStat
                 "abbr", "doi", "awb", "oclc", "fix", "c c", "'''", "journal",
                 "div col", "username", "minor", "book", "ref name",
                 "reference", "telegraph", "name list", "transliteration", "pmid",
-                "record", "category", "co uk", "player", "issn", "gt "
+                "record", "category", "co uk", "player", "issn", "gt ",
+                "jpg", " com ", " php ", " net ", " n a", "alsj", "greeklit",
+                "align center", "content", "d d ", " b d", " d d", "sfnm", "library",
+                "ncbi", "p p ", " p p", "math", " sub ", "url", "status",
+                "news", "parentid", "s cid", " code", "lt ", "archive", "math",
+                "cite news", "i i ", "' '", "d f r", "x x ", "esq", "i i i", "a b c",
+                "amp c", "w w w", "m d f", "n n n", "f r s", "a a a", "sync",
+                "class", "meow", "font", "la la"
             };
 
             var i = 0;
@@ -57,14 +64,14 @@ namespace WordStat
                 Console.Write($@"{proc.ToString(CultureInfo.InvariantCulture),3}%");
                 Console.SetCursorPosition(Console.CursorLeft - 4, Console.CursorTop);
 
-                var parser = new Parser(4);
+                var parser = new Parser(3);
                 parser.OpenFile(file);
                 processor.Perform(parser, stopList);
                 parser.Close();
                 i++;
             }
 
-            processor.WriteResult("wiki_res_4.txt", 1000);
+            processor.WriteResult("sub_res_3.txt", 1000);
             //Console.ReadLine();
         }
 
