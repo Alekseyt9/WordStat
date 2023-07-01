@@ -57,21 +57,23 @@ namespace WordStat
                 "class", "meow", "font", "la la"
             };
 
+            var n = 2;
             var i = 0;
+
             foreach (var file in files)
             {
                 var proc = Math.Floor(100 * i / (float)files.Count);
                 Console.Write($@"{proc.ToString(CultureInfo.InvariantCulture),3}%");
                 Console.SetCursorPosition(Console.CursorLeft - 4, Console.CursorTop);
 
-                var parser = new Parser(3);
+                var parser = new Parser(n);
                 parser.OpenFile(file);
                 processor.Perform(parser, stopList);
                 parser.Close();
                 i++;
             }
 
-            processor.WriteResult("sub_res_3.txt", 1000);
+            processor.WriteResult($"sub_res_{n}.txt", 1000);
             //Console.ReadLine();
         }
 
