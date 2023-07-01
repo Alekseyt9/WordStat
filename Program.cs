@@ -9,7 +9,7 @@ namespace WordStat
         {
             var processor = new Processor();
 
-            var path = @"d:\eng_corp\subtitles\";
+            var path = @"d:\eng_corp\enwiki-latest-pages-articles.xml\";
             var files = Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories).ToList();
             //var files = new List<string>() { @"d:\eng_corp\reddit.txt" };
 
@@ -54,7 +54,9 @@ namespace WordStat
                 "news", "parentid", "s cid", " code", "lt ", "archive", "math",
                 "cite news", "i i ", "' '", "d f r", "x x ", "esq", "i i i", "a b c",
                 "amp c", "w w w", "m d f", "n n n", "f r s", "a a a", "sync",
-                "class", "meow", "font", "la la"
+                "class", "meow", "font", "la la", "start p", "i i", "enuscc",
+                "commenter", "voter", "top", "karma", "replies", "newcomer",
+                "op hr", "edited", "comment", "p p", "'' p"
             };
 
             var n = 2;
@@ -73,7 +75,7 @@ namespace WordStat
                 i++;
             }
 
-            processor.WriteResult($"sub_res_{n}.txt", 1000);
+            processor.WriteResult($"wiki_res_{n}.txt", 1000);
             //Console.ReadLine();
         }
 

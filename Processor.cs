@@ -29,7 +29,7 @@ namespace WordStat
 
                 _map[word]++;
 
-                if (_map.Count > 80000000)
+                if (_map.Count > 20000000)
                 {
                     break;
                 }
