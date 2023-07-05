@@ -7,9 +7,7 @@ namespace WordStat
     {
         static void Main(string[] args)
         {
-            var processor = new Processor();
-
-            var path = @"d:\eng_corp\enwiki-latest-pages-articles.xml\";
+            var path = @"d:\eng_corp\youtube_it\";
             var files = Directory.EnumerateFiles(path, "*.*", SearchOption.AllDirectories).ToList();
             //var files = new List<string>() { @"d:\eng_corp\reddit.txt" };
 
@@ -59,23 +57,27 @@ namespace WordStat
                 "op hr", "edited", "comment", "p p", "'' p"
             };
 
-            var n = 2;
-            var i = 0;
 
-            foreach (var file in files)
+            for (var n = 2; n <= 5; n++)
             {
-                var proc = Math.Floor(100 * i / (float)files.Count);
-                Console.Write($@"{proc.ToString(CultureInfo.InvariantCulture),3}%");
-                Console.SetCursorPosition(Console.CursorLeft - 4, Console.CursorTop);
+                var processor = new Processor();
+                var i = 0;
+                foreach (var file in files)
+                {
+                    var proc = Math.Floor(100 * i / (float)files.Count);
+                    Console.Write($@"{proc.ToString(CultureInfo.InvariantCulture),3}%");
+                    Console.SetCursorPosition(Console.CursorLeft - 4, Console.CursorTop);
 
-                var parser = new Parser(n);
-                parser.OpenFile(file);
-                processor.Perform(parser, stopList);
-                parser.Close();
-                i++;
+                    var parser = new Parser(n);
+                    parser.OpenFile(file);
+                    processor.Perform(parser, stopList);
+                    parser.Close();
+                    i++;
+                }
+
+                processor.WriteResult($"youtube_it_res_{n}.txt", 1000);
             }
 
-            processor.WriteResult($"wiki_res_{n}.txt", 1000);
             //Console.ReadLine();
         }
 
